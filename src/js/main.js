@@ -1,1 +1,1 @@
-// Main js file
+import './hamburger-menu';

@@ -1,12 +1,10 @@
-$fontWeights: (
-  regular: 400,
-  medium: 500,
-  semibold: 600,
-);
+// Font Weights
+$regular-weight: 400;
+$medium-weight: 500;
+$semibold-weight: 600;
 
-$colors: (
-  primary: '#5F74DD',
-  secondary: '#979BAF',
-  white: '#FFF',
-  black: '#000',
-);
+// Colors
+$primary-color: #5f74dd;
+$secondary-color: #979baf;
+$white-color: #fff;
+$black-color: #000;
