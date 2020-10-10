@@ -13,21 +13,27 @@ body {
   background-color: $white-color;
   font-weight: $regular-weight;
   color: $black-color;
-  padding-left: 3.6rem;
-  padding-right: 3.6rem;
 }
 
 .header {
   padding-top: 2.2rem;
+
+  @include for-size(lg-up) {
+    padding-top: 2rem;
+  }
 }
 
 .hamburger {
+  margin: 0 3.6rem;
   padding: 1rem;
   display: inline-block;
   cursor: pointer;
   background-color: transparent;
   border: 0;
-  margin: 0;
+
+  @include for-size(lg-up) {
+    display: none;
+  }
 
   .sr-only {
     border: 0;
@@ -103,12 +109,27 @@ body {
 .navigation {
   height: 100vh;
   width: 50vw;
-  background-color: $primary-color;
+  background-color: $white-color;
+  box-shadow: 0px 2px 6px #0000001a;
   position: absolute;
   top: 0;
   left: 0;
   visibility: hidden;
   transform: translateX(-50vw);
+
+  @include for-size(lg-up) {
+    width: 100%;
+    height: inherit;
+    position: relative;
+    transform: none;
+    visibility: visible;
+    display: flex;
+    align-items: center;
+    box-shadow: none;
+    border-bottom: 1px solid #dfdfdf;
+    width: 100%;
+    padding-bottom: 2rem;
+  }
 
   &--active {
     transform: translateX(0px);
@@ -116,16 +137,68 @@ body {
     visibility: visible;
   }
 
+  &__logo {
+    display: none;
+    padding: 1rem;
+
+    @include for-size(lg-up) {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: $semibold-weight;
+      text-decoration: none;
+      color: $black-color;
+      margin-left: 9rem;
+    }
+  }
+
   &__list {
-    margin: 5rem;
+    width: 100%;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    display: grid;
+    justify-items: center;
+
+    @include for-size(lg-up) {
+      margin: 0;
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 
   &__item {
-    margin-bottom: 2rem;
+    margin-top: 6rem;
+
+    @include for-size(lg-up) {
+      margin-top: 0;
+    }
 
     a {
+      font-size: 2rem;
       text-decoration: none;
       color: $black-color;
+      padding: 1rem;
+
+      @include for-size(lg-up) {
+        font-size: 1.3rem;
+        margin: 0 2.25rem;
+      }
+    }
+  }
+
+  .social__list {
+    display: flex;
+    justify-content: center;
+
+    @include for-size(lg-up) {
+      margin-right: 9rem;
+    }
+
+    .social__item:first-child {
+      margin-right: 2rem;
+    }
+
+    .social__item a {
+      padding: 2rem 1rem 1rem;
     }
   }
 }
@@ -134,24 +207,45 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 3.6rem;
+
+  @include for-size(lg-up) {
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 0;
+    margin-top: 9rem;
+  }
 }
 
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-top: 5rem;
+  padding-bottom: 12rem;
+  margin-bottom: 12rem;
+  border-bottom: 1px solid #dfdfdf;
 
-  &::after {
-    content: '';
-    left: 0;
-    border-top: 1px solid #dfdfdf;
-    width: 100%;
-    margin: 12rem 0;
+  @include for-size(lg-up) {
+    border-bottom: 0;
+    border-right: 1px solid #dfdfdf;
+    padding: 2rem 12rem;
+  }
+
+  @include for-size(xl-up) {
+    border-bottom: 0;
+    border-right: 1px solid #dfdfdf;
+    padding: 2rem 20rem;
   }
 
   &__picture {
     object-position: center;
+
+    @include for-size(sm-up) {
+      max-width: 20.1rem;
+      max-height: 17.9rem;
+    }
   }
 
   &__title,
@@ -164,6 +258,10 @@ main {
     font-size: 3.3rem;
     line-height: 4.2rem;
     margin: 6.2rem 0 2rem;
+
+    @include for-size(lg-up) {
+      font-size: 3.7rem;
+    }
   }
 
   &__subtitle {
@@ -171,6 +269,11 @@ main {
     line-height: 2.2rem;
     padding: 0 6rem 10rem;
     color: $secondary-color;
+
+    @include for-size(lg-up) {
+      font-size: 2rem;
+      padding: 0 6rem 3.5rem;
+    }
   }
 
   &__button {
@@ -182,12 +285,23 @@ main {
     border-radius: 0.3rem;
     border: none;
     font-weight: $medium-weight;
+
+    @include for-size(lg-up) {
+      font-size: 1.6rem;
+    }
   }
 }
 
 .company {
   text-align: center;
   padding-bottom: 10rem;
+
+  &__logo {
+    @include for-size(sm-up) {
+      max-width: 7.5rem;
+      max-height: 4.4rem;
+    }
+  }
 
   &__link {
     display: block;
@@ -216,6 +330,7 @@ main {
 
   .details__list {
     line-height: 1.8rem;
+    font-size: 1.3rem;
 
     a {
       padding: 1rem;

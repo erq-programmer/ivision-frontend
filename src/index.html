@@ -21,24 +21,37 @@
           </span>
         </button>
         <div class="navigation">
+          <a class="navigation__logo" href="index.html">www.ivision.pl</a>
           <ul class="navigation__list">
-            <li class="navigation__item"><a href="#">strona główna</a></li>
+            <li class="navigation__item"><a href="index.html">strona główna</a></li>
             <li class="navigation__item"><a href="#">usługi</a></li>
             <li class="navigation__item"><a href="#">o firmie</a></li>
             <li class="navigation__item"><a href="#">kontakt</a></li>
           </ul>
           <ul class="social__list">
-            <li class="social__item"><a href="#">FB</a></li>
-            <li class="social__item"><a href="#">Instagram</a></li>
+            <li class="social__item">
+              <a href="#"
+                ><img src="./assets/facebook.svg" alt="Facebook icon" width="24px" height="24px"
+              /></a>
+            </li>
+            <li class="social__item">
+              <a href="#"
+                ><img src="./assets/instagram.svg" alt="Instagram icon" width="24px" height="24px"
+              /></a>
+            </li>
           </ul>
         </div>
       </nav>
     </header>
     <main>
       <section class="hero">
-        <picture class="hero__picture">
-          <source srcset="./assets/image@2x.png" media="(min-width: 600px)" />
-          <img src="./assets/image.png" alt="Laptop ilustration with IVN company logo" />
+        <picture>
+          <source srcset="./assets/image@2x.png" media="(min-width: 576px)" />
+          <img
+            class="hero__picture"
+            src="./assets/image.png"
+            alt="Laptop ilustration with IVN company logo"
+          />
         </picture>
         <h1 class="hero__title">Start your journey with Ivision</h1>
         <p class="hero__subtitle">Nice to meet you. Let's work together</p>
@@ -46,9 +59,9 @@
       </section>
       <aside class="company">
         <a class="company__link" href="#"
-          ><picture class="company__logo">
-            <source srcset="./assets/PNG_Global@2x.png" media="(min-width: 600px)" />
-            <img src="./assets/PNG_Global.png" alt="IVN logo" /> </picture
+          ><picture>
+            <source srcset="./assets/PNG_Global@2x.png" media="(min-width: 576px)" />
+            <img class="company__logo" src="./assets/PNG_Global.png" alt="IVN logo" /> </picture
         ></a>
         <section class="company__details">
           <h2 class="details__heading">IVN Sp. z o.o.</h2>
