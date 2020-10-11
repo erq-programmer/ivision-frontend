@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
 @import 'reset';
 @import 'variables';
 @import 'mixins';
@@ -14,18 +15,6 @@ body {
   font-weight: $regular-weight;
   color: $black-color;
 
-  // &::before {
-  //   content: '';
-  //   display: none;
-  //   position: fixed;
-  //   top: 0;
-  //   left: 0;
-  //   width: 100%;
-  //   height: 100%;
-  //   background: rgba(0, 0, 0, 0.8);
-  //   z-index: 1;
-  // }
-
   &.hidden {
     overflow: hidden;
   }
@@ -33,10 +22,31 @@ body {
 
 .header {
   padding-top: 2.2rem;
-  z-index: 2;
 
   @include for-size(lg-up) {
     padding-top: 2rem;
+  }
+}
+
+.overlay {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $primary-color;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s linear;
+
+  @include for-size(lg-up) {
+    z-index: 9998;
+  }
+
+  &--active {
+    opacity: 0.9;
+    visibility: visible;
   }
 }
 
@@ -65,7 +75,7 @@ body {
   }
 
   &--active {
-    transform: translatex(calc(50vw - 3.6rem));
+    transform: translateX(calc(50vw - 3.6rem));
   }
 
   &__box {
@@ -74,7 +84,8 @@ body {
     display: inline-block;
     position: relative;
     border-radius: 50%;
-    box-shadow: 0px 2px 6px #0000001a;
+    background-color: $white-color;
+    box-shadow: $primary-box-shadow;
   }
 
   &__inner {
@@ -127,7 +138,7 @@ body {
   height: 100vh;
   width: 50vw;
   background-color: $white-color;
-  box-shadow: 0px 2px 6px #0000001a;
+  box-shadow: $primary-box-shadow;
   position: absolute;
   top: 0;
   left: 0;
@@ -176,6 +187,7 @@ body {
 
     & > * {
       justify-self: center;
+      text-align: center;
     }
 
     @include for-size(lg-up) {
@@ -186,21 +198,30 @@ body {
   }
 
   &__item {
-    margin-top: 6rem;
+    margin-top: 2rem;
 
     @include for-size(lg-up) {
       margin-top: 0;
     }
 
     a {
-      font-size: 2rem;
+      display: block;
+      position: relative;
+      font-size: 1.6rem;
       text-decoration: none;
       color: $black-color;
-      padding: 1rem;
+      padding: 2rem 3rem;
+      transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+      &:hover {
+        background-color: $black-color;
+        color: $white-color;
+      }
 
       @include for-size(lg-up) {
         font-size: 1.3rem;
         margin: 0 2.25rem;
+        padding: 1rem;
       }
     }
   }
@@ -218,7 +239,14 @@ body {
     }
 
     .social__item a {
-      padding: 2rem 1rem 1rem;
+      display: block;
+      padding: 1rem;
+      transition: transform 0.2s ease-in-out;
+      transform: scale(1);
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
   }
 }
@@ -298,13 +326,18 @@ main {
 
   &__button {
     cursor: pointer;
-    background: $primary-color;
+    background-color: $primary-color;
     font-size: 1.3rem;
     color: $white-color;
     padding: 2rem 6rem;
     border-radius: 0.3rem;
     border: none;
     font-weight: $medium-weight;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+      background-color: darken($primary-color, 15%);
+    }
 
     @include for-size(lg-up) {
       font-size: 1.6rem;
@@ -353,21 +386,15 @@ main {
     font-size: 1.3rem;
 
     a {
+      display: block;
       padding: 1rem;
       text-decoration: none;
       color: $black-color;
     }
   }
 
-  .details__item {
-    padding-bottom: 2rem;
-
-    &:first-of-type {
-      padding-bottom: 0;
-    }
-    &:last-of-type {
-      padding-bottom: 0;
-    }
+  .details__item:nth-child(2) {
+    padding-bottom: 1rem;
   }
 }
 
@@ -377,15 +404,37 @@ main {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 100vh;
+  height: calc(100% - 4.86rem);
+  width: calc(100% - 1.5rem - 3.5rem);
   background-color: $white-color;
   z-index: 9999;
   padding: 3.85rem 1.5rem 1rem 3.5rem;
-  display: none;
-  flex-direction: column;
+  visibility: hidden;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+
+  &::after {
+    content: '';
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    box-shadow: 0px -24px 10px 20px rgba(255, 255, 255, 0.75);
+  }
+
+  @include for-size(lg-up) {
+    width: 600px;
+    height: 80vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   &--active {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    pointer-events: all;
   }
 
   &__header {
@@ -400,6 +449,7 @@ main {
     font-size: 2.7rem;
     line-height: 3.2rem;
     font-weight: $medium-weight;
+    width: 100%;
   }
 
   &__close {
@@ -425,8 +475,8 @@ main {
       width: 1px;
     }
 
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       position: absolute;
       left: 50%;
       top: 20%;
@@ -436,36 +486,54 @@ main {
       background-color: $primary-color;
     }
 
-    &:before {
+    &::before {
       transform: rotate(45deg);
     }
 
-    &:after {
+    &::after {
       transform: rotate(-45deg);
     }
+  }
+
+  &__content {
+    width: 100%;
+    height: calc(100% - 7rem);
   }
 
   &__list {
     overflow: auto;
     width: 100%;
-    height: 85vh;
+    height: 100%;
+    display: block;
   }
 
   &__item {
     border-bottom: 1px solid #dfdfdf;
-    padding: 2rem 0;
+
     margin-right: 1.5rem;
+    transition: all 0.2s linear;
+
+    &:hover a > * {
+      margin-right: 2rem;
+      transform: translateX(2rem);
+    }
 
     &:first-child {
       border-top: 1px solid #dfdfdf;
     }
 
     a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 2rem 0;
       text-decoration: none;
+      transition: all 0.2s linear;
     }
   }
 
   .item__title {
+    transition: all 0.2s linear;
     font-size: 1.7rem;
     font-weight: $medium-weight;
     line-height: 2rem;
@@ -473,6 +541,7 @@ main {
   }
 
   .item__subtitle {
+    transition: all 0.2s linear;
     font-size: 1.3rem;
     font-weight: $medium-weight;
     line-height: 1.6rem;
@@ -480,7 +549,9 @@ main {
   }
 }
 
-/* width */
+// Styles for lightbox scrollbar
+
+/* Width */
 ::-webkit-scrollbar {
   width: 5px;
 }
