@@ -173,7 +173,10 @@ body {
     margin-top: 5rem;
     margin-bottom: 5rem;
     display: grid;
-    justify-items: center;
+
+    & > * {
+      justify-self: center;
+    }
 
     @include for-size(lg-up) {
       margin: 0;

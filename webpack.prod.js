@@ -12,7 +12,7 @@ module.exports = merge(common, {
   output: {
     filename: '[name].[contentHash].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist/',
+    publicPath: '',
   },
   optimization: {
     minimizer: [
@@ -28,12 +28,21 @@ module.exports = merge(common, {
       }),
     ],
   },
-  plugins: [new MiniCssExtractPlugin({ filename: '[name].[contentHash].css' }), new CleanWebpackPlugin()],
+  plugins: [
+    new MiniCssExtractPlugin({ filename: '[name].[contentHash].css' }),
+    new CleanWebpackPlugin(),
+  ],
   module: {
     rules: [
       {
         test: /\.scss$/,
-        use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+        use: [
+          'style-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
     ],
   },
